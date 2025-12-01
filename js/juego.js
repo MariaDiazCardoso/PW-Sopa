@@ -121,7 +121,7 @@ function confirmarSalida() {
         '¿SALIR AL MENÚ?',
         'Se perderá el progreso actual',
         () => {
-            window.location.href = 'inicio.html';
+            window.location.href = 'index.html';
         }
     );
 }
