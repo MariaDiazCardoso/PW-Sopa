@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Word Hunt - Records</title>
+     
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="css/global.css">
+    <link rel="stylesheet" href="css/records.css">
+
+    <script src="js/RecordsManager.js"></script>
+</head>
+<body>
+    <div class="pantalla">
+        <button class="boton-volver" onclick="window.location.href='inicio.html'">◄ VOLVER</button>
+        
+        <div class="encabezado">
+            <h1>☆ RECORDS ☆</h1>
+            <p>MEJORES TIEMPOS</p>
+        </div>
+
+        <div class="pantalla-opciones">
+            <!-- Selector de tema -->
+            <div class="grupo-opcion">
+                <label class="etiqueta-opcion"> TEMAS
+                </label>
+                <div class="selector-temas-records">
+                    <button class="boton-tema-record activo" onclick="cambiarTema('ANIMALES')">🐾 ANIMALES</button>
+                    <button class="boton-tema-record" onclick="cambiarTema('COMIDA')">🍕 COMIDA</button>
+                    <button class="boton-tema-record" onclick="cambiarTema('DEPORTES')">⚽ DEPORTES</button>
+                    <button class="boton-tema-record" onclick="cambiarTema('PAÍSES')">🌍 PAÍSES</button>
+                    <button class="boton-tema-record" onclick="cambiarTema('CIENCIA')">🔬 CIENCIA</button>
+                    <button class="boton-tema-record" onclick="cambiarTema('COLORES')">🎨 COLORES</button>
+                </div>
+            </div>
+
+            <!-- Estadísticas del tema -->
+            <div class="estadisticas-tema" id="estadisticasTema">
+                <div class="stat-item">
+                    <div class="stat-label">JUEGOS TOTALES</div>
+                    <div class="stat-value" id="statTotal">0</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-label">MEJOR TIEMPO</div>
+                    <div class="stat-value" id="statMejor">--:--</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-label">TIEMPO PROMEDIO</div>
+                    <div class="stat-value" id="statPromedio">--:--</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-label">COMPLETADOS</div>
+                    <div class="stat-value" id="statCompletados">0</div>
+                </div>
+            </div>
+
+            <!-- Lista de records -->
+            <div class="contenedor-records">
+                <h2 class="titulo-lista-records">🏆 TOP 10 RECORDS</h2>
+                <div class="lista-records" id="listaRecords">
+                    <div class="mensaje-sin-records">No hay récords aún para este tema</div>
+                </div>
+            </div>
+
+            <!-- Botones de acción -->
+            <div class="acciones-records">
+                <button class="boton-limpiar-tema" onclick="limpiarRecordsTema()">
+                    🗑️ LIMPIAR TEMA ACTUAL
+                </button>
+                <button class="boton-limpiar-todos" onclick="limpiarTodosLosRecords()">
+                    ⚠️ LIMPIAR TODOS LOS RECORDS
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de confirmación -->
+    <div class="modal-confirmacion" id="modalConfirmacion" style="display: none;">
+        <div class="contenido-modal">
+            <h3>¿ESTÁS SEGURO?</h3>
+            <p id="mensajeConfirmacion">Esta acción no se puede deshacer</p>
+            <div class="botones-modal">
+                <button class="boton-modal boton-confirmar" id="botonConfirmar">SÍ</button>
+                <button class="boton-modal boton-cancelar" onclick="cerrarModal()">NO</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let temaActual = 'ANIMALES';
+
+        // Inicializar al cargar la página
+        document.addEventListener('DOMContentLoaded', function() {
+            mostrarRecords('ANIMALES');
+        });
+
+        // Cambiar tema
+        function cambiarTema(tema) {
+            temaActual = tema;
+            
+            // Actualizar botones
+            document.querySelectorAll('.boton-tema-record').forEach(btn => {
+                btn.classList.remove('activo');
+            });
+            event.target.classList.add('activo');
+            
+            // Mostrar records del tema
+            mostrarRecords(tema);
+        }
+
+        // Mostrar records de un tema
+        function mostrarRecords(tema) {
+            const lista = document.getElementById('listaRecords');
+            const records = window.RecordsManager.obtenerRecordsPorTema(tema);
+            
+            // Actualizar estadísticas
+            actualizarEstadisticas(tema);
+            
+            if (records.length === 0) {
+                lista.innerHTML = '<div class="mensaje-sin-records">No hay récords aún para este tema</div>';
+                return;
+            }
+
+            lista.innerHTML = '';
+            
+            records.forEach((record, index) => {
+                const itemRecord = document.createElement('div');
+                itemRecord.className = 'item-record';
+                
+                const posicion = index + 1;
+                let medallaIcon = '';
+                if (posicion === 1) medallaIcon = '🥇';
+                else if (posicion === 2) medallaIcon = '🥈';
+                else if (posicion === 3) medallaIcon = '🥉';
+                else medallaIcon = `${posicion}.`;
+                
+                const completadoIcon = record.completado ? '✓' : '✗';
+                const completadoClass = record.completado ? 'completado' : 'incompleto';
+                
+                itemRecord.innerHTML = `
+                    <div class="record-posicion">${medallaIcon}</div>
+                    <div class="record-info">
+                        <div class="record-tiempo">${window.RecordsManager.formatearTiempo(record.tiempo)}</div>
+                        <div class="record-detalles">
+                            <span class="record-palabras ${completadoClass}">
+                                ${completadoIcon} ${record.palabrasEncontradas}/${record.totalPalabras} palabras
+                            </span>
+                            <span class="record-fecha">${window.RecordsManager.formatearFecha(record.fecha)}</span>
+                        </div>
+                    </div>
+                `;
+                
+                lista.appendChild(itemRecord);
+            });
+        }
+
+        // Actualizar estadísticas
+        function actualizarEstadisticas(tema) {
+            const stats = window.RecordsManager.obtenerEstadisticas(tema);
+            
+            document.getElementById('statTotal').textContent = stats.totalJuegos;
+            document.getElementById('statMejor').textContent = 
+                stats.mejorTiempo ? window.RecordsManager.formatearTiempo(stats.mejorTiempo) : '--:--';
+            document.getElementById('statPromedio').textContent = 
+                stats.tiempoPromedio ? window.RecordsManager.formatearTiempo(stats.tiempoPromedio) : '--:--';
+            document.getElementById('statCompletados').textContent = stats.juegosCompletados;
+        }
+
+        // Limpiar records del tema actual
+        function limpiarRecordsTema() {
+            const modal = document.getElementById('modalConfirmacion');
+            const mensaje = document.getElementById('mensajeConfirmacion');
+            const botonConfirmar = document.getElementById('botonConfirmar');
+            
+            mensaje.textContent = `Se eliminarán todos los récords de ${temaActual}`;
+            modal.style.display = 'flex';
+            
+            botonConfirmar.onclick = function() {
+                window.RecordsManager.limpiarRecordsPorTema(temaActual);
+                mostrarRecords(temaActual);
+                cerrarModal();
+            };
+        }
+
+        // Limpiar todos los records
+        function limpiarTodosLosRecords() {
+            const modal = document.getElementById('modalConfirmacion');
+            const mensaje = document.getElementById('mensajeConfirmacion');
+            const botonConfirmar = document.getElementById('botonConfirmar');
+            
+            mensaje.textContent = 'Se eliminarán TODOS los récords de TODOS los temas';
+            modal.style.display = 'flex';
+            
+            botonConfirmar.onclick = function() {
+                window.RecordsManager.limpiarTodosLosRecords();
+                mostrarRecords(temaActual);
+                cerrarModal();
+            };
+        }
+
+        // Cerrar modal
+        function cerrarModal() {
+            document.getElementById('modalConfirmacion').style.display = 'none';
+        }
+    </script>
+</body>
+</html>

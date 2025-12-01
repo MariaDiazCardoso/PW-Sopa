@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Word Hunt - Seleccionar Tema</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="css/global.css">
+    <link rel="stylesheet" href="css/temas.css">
+</head>
+<body>
+    <div class="pantalla">
+        <button class="boton-volver" onclick="window.location.href='inicio.html'">◄ VOLVER</button>
+        
+        <div class="encabezado">
+            <h1>ELIGE TEMA</h1>
+            <p>SELECCIONA UNA CATEGORÍA</p>
+        </div>
+
+        <div class="seleccion-tema">
+            <div class="cuadricula-temas">
+                <div class="tarjeta-tema" onclick="window.location.href='juego.html?theme=ANIMALES'">
+                    <div class="icono-tema">🐾</div>
+                    <div class="titulo-tema">ANIMALES</div>
+                    <div class="descripcion-tema">Encuentra animales salvajes y domésticos</div>
+                </div>
+
+                <div class="tarjeta-tema" onclick="window.location.href='juego.html?theme=COMIDA'">
+                    <div class="icono-tema">🍕</div>
+                    <div class="titulo-tema">COMIDA</div>
+                    <div class="descripcion-tema">Busca tus platillos favoritos</div>
+                </div>
+
+                <div class="tarjeta-tema" onclick="window.location.href='juego.html?theme=DEPORTES'">
+                    <div class="icono-tema">⚽</div>
+                    <div class="titulo-tema">DEPORTES</div>
+                    <div class="descripcion-tema">Deportes y actividades físicas</div>
+                </div>
+
+                <div class="tarjeta-tema" onclick="window.location.href='juego.html?theme=PAÍSES'">
+                    <div class="icono-tema">🌍</div>
+                    <div class="titulo-tema">PAÍSES</div>
+                    <div class="descripcion-tema">Naciones alrededor del mundo</div>
+                </div>
+
+                <div class="tarjeta-tema" onclick="window.location.href='juego.html?theme=CIENCIA'">
+                    <div class="icono-tema">🔬</div>
+                    <div class="titulo-tema">CIENCIA</div>
+                    <div class="descripcion-tema">Términos científicos y tecnología</div>
+                </div>
+
+                <div class="tarjeta-tema" onclick="window.location.href='juego.html?theme=COLORES'">
+                    <div class="icono-tema">🎨</div>
+                    <div class="titulo-tema">COLORES</div>
+                    <div class="descripcion-tema">Encuentra todos los colores</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

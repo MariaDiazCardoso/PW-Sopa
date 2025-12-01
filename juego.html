@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Word Hunt - Juego</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="css/global.css">
+    <link rel="stylesheet" href="css/juego.css">
+    <link rel="stylesheet" href="css/menu-pausa.css">
+
+    <script src="js/RecordsManager.js"></script>
+    <script src="js/juego.js"></script>
+    
+</head>
+<body class="tema-neon">
+    <!-- difuminado -->
+    <div class="capa-oscura" id="capaOscura" onclick="cerrarMenuPausa()"></div>
+
+    <!-- menu de pausa-->
+    <div class="menu-pausa" id="menuPausa">
+        <div class="encabezado-pausa">
+            <h2>⏸ PAUSA</h2>
+            <button class="boton-cerrar-menu" onclick="cerrarMenuPausa()">✕</button>
+        </div>
+        
+        <div class="contenido-pausa">
+            <div class="info-pausa">
+                <div class="item-info-pausa">
+                    <span class="icono-pausa">⏱️</span>
+                    <div>
+                        <div class="etiqueta-pausa">TIEMPO</div>
+                        <div class="valor-pausa" id="tiempoPausa">00:00</div>
+                    </div>
+                </div>
+                <div class="item-info-pausa">
+                    <span class="icono-pausa">🎯</span>
+                    <div>
+                        <div class="etiqueta-pausa">PROGRESO</div>
+                        <div class="valor-pausa" id="progresoPausa">0/7</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="botones-pausa">
+                <button class="boton-pausa boton-reanudar" onclick="reanudarJuego()">
+                    ▶ REANUDAR
+                </button>
+                <button class="boton-pausa boton-reiniciar" onclick="confirmarReinicio()">
+                    ↻ REINICIAR
+                </button>
+                <button class="boton-pausa boton-opciones" onclick="window.location.href='opciones.html'">
+                    ⚙ OPCIONES
+                </button>
+                <button class="boton-pausa boton-salir" onclick="confirmarSalida()">
+                    ◄ SALIR
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- confirmacion -->
+    <div class="modal" id="modalConfirmacion">
+        <div class="contenido-modal">
+            <h3 id="tituloModal">¿ESTÁS SEGURO?</h3>
+            <p id="mensajeModal">Se perderá el progreso actual</p>
+            <div class="botones-modal">
+                <button class="boton-modal boton-confirmar" id="modalConfirmar">SÍ</button>
+                <button class="boton-modal boton-cancelar" onclick="cerrarModal()">NO</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="pantalla">
+        <div class="barra-superior">
+            <button class="boton-superior" onclick="alternarMenuPausa()">
+                ☰ 
+            </button>
+            <div class="titulo-superior" id="tituloSuperior">ANIMALES</div>
+        </div>
+        
+        <div class="pantalla-juego">
+            <div class="info-juego">
+                <div class="item-info">
+                    <span class="icono-info">⏱️</span>
+                    TIEMPO: <span class="valor-info" id="tiempoJuego">00:00</span>
+                </div>
+                <div class="item-info">
+                    <span class="icono-info">🎯</span>
+                    ENCONTRADAS: <span class="valor-info" id="palabrasEncontradas">0/7</span>
+                </div>
+                <div class="item-info">
+                    <span class="icono-info">🔥</span>
+                    RACHA: <span class="valor-info" id="valorRacha">0</span>
+                </div>
+            </div>
+
+            <div class="contenedor-juego">
+                <div class="cuadricula-juego">
+                    <div class="rejilla-letras-juego" id="rejillaJuego">
+                    </div>
+                </div>
+
+                <div class="panel-palabras-juego">
+                    <h2>PALABRAS</h2>
+                    <ul class="lista-palabras-juego" id="listaPalabrasJuego">
+                    </ul>
+                </div>
+            </div>
+
+            <div class="controles-juego">
+                <button class="boton-control boton-pista-juego" onclick="mostrarPista()">
+                    💡 PISTA
+                </button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

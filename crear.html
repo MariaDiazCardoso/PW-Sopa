@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crear Sopa</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="css/global.css">
+    <link rel="stylesheet" href="css/crear.css">
+
+    <script src="js/"></script>
+
+
+</head>
+<body>
+    <div class="pantalla">
+        <button class="boton-volver" onclick="window.location.href='inicio.html'">◄ VOLVER</button>
+        
+        <div class="encabezado">
+            <h1>CREAR SOPA</h1>
+            <p>DISEÑA TU PUZZLE</p>
+        </div>
+
+        <div class="pantalla-crear">
+            <div class="grupo-formulario">
+                <label class="etiqueta-formulario">TAMAÑO DE CUADRÍCULA</label>
+                <div class="selector-tamano-cuadricula">
+                    <div class="opcion-tamano">10x10</div>
+                    <div class="opcion-tamano activa">15x15</div>
+                    <div class="opcion-tamano">20x20</div>
+                </div>
+            </div>
+
+            <div class="grupo-formulario">
+                <label class="etiqueta-formulario">AGREGAR PALABRAS</label>
+                <div class="grupo-entrada-palabra">
+                    <input type="text" class="entrada-formulario" id="entradaPalabra" placeholder="Escribe una palabra...">
+                    <button class="boton-agregar-palabra">+</button>
+                </div>
+            </div>
+
+            <div class="grupo-formulario">
+                <label class="etiqueta-formulario">PALABRAS AGREGADAS (<span id="contadorPalabras">0</span> MÍNIMO 5)</label>
+                <div class="visualizacion-lista-palabras" id="listaPalabras">
+                </div>
+            </div>
+
+            <div class="grupo-formulario">
+                <label class="etiqueta-formulario">NOMBRE DEL PUZZLE (OPCIONAL)</label>
+                <input type="text" class="entrada-formulario" id="nombrePuzzle" placeholder="Mi sopa de letras...">
+            </div>
+
+            <div class="botones-accion">
+                <button class="boton-accion-crear boton-generar">
+                    ✓ GENERAR
+                </button>
+                <button class="boton-accion-crear boton-limpiar-crear">
+                    ↻ LIMPIAR
+                </button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

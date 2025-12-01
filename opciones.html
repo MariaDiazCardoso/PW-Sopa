@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Opciones</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="css/global.css">
+    <link rel="stylesheet" href="css/opciones.css">
+
+    <script src="js/opciones.js"></script>
+    
+</head>
+<body>
+    <div class="pantalla">
+        <button class="boton-volver" onclick="window.location.href='inicio.html'"> ◄ VOLVER</button>
+        
+        <div class="encabezado">
+            <h1>OPCIONES</h1>
+            <p>CONFIGURACIÓN DEL JUEGO</p>
+        </div>
+
+        <div class="pantalla-opciones">
+            <!--tamaño de la pupiletras-->
+            <div class="grupo-opcion">
+                <label class="etiqueta-opcion">
+                    <span class="icono-opcion">📏</span>
+                    TAMAÑO DE CUADRÍCULA
+                </label>
+                <div class="botones-opcion">
+                    <button class="boton-opcion">10x10</button>
+                    <button class="boton-opcion activo">15x15</button>
+                    <button class="boton-opcion">20x20</button>
+                </div>
+            </div>
+
+            <!-- colores en las palabras -->
+            <div class="grupo-opcion">
+                <label class="etiqueta-opcion">
+                    <span class="icono-opcion">🌈</span>
+                    COLORES DE PALABRAS
+                </label>
+                <div class="alternador-color">
+                    <button class="boton-alternador activo">
+                        ✓ ACTIVADO
+                    </button>
+                    <button class="boton-alternador ">
+                        DESACTIVADO
+                    </button>
+                </div>
+                <p class="nota-opcion">Cada palabra encontrada tendrá un color diferente</p>
+            </div>
+
+            <!-- boton guardas -->
+            <div class="seccion-guardar">
+                <button class="boton-guardar">
+                    ✓ GUARDAR CAMBIOS
+                </button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

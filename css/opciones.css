@@ -1,0 +1,149 @@
+.pantalla-opciones {
+    position: relative;
+    z-index: 2;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.grupo-opcion {
+    margin-bottom: 40px;
+    padding: 30px;
+    background: rgba(0, 0, 0, 0.4);
+    border: 3px solid #00ffff;
+    border-radius: 15px;
+    box-shadow: 
+        inset 0 0 20px rgba(0, 255, 255, 0.2),
+        0 0 20px rgba(0, 255, 255, 0.3);
+}
+
+.etiqueta-opcion {
+    display: block;
+    color: #ff00ff;
+    font-size: 0.8em;
+    margin-bottom: 20px;
+    text-shadow: 0 0 10px #ff00ff;
+    letter-spacing: 2px;
+}
+
+.icono-opcion {
+    font-size: 1.5em;
+    margin-right: 15px;
+    display: inline-block;
+    filter: drop-shadow(0 0 10px currentColor);
+}
+
+.botones-opcion {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.boton-opcion {
+    background: rgba(0, 0, 0, 0.6);
+    border: 3px solid #00ffff;
+    padding: 15px 30px;
+    border-radius: 10px;
+    color: #00ff00; 
+    font-size: 0.8em;
+    font-family: 'Press Start 2P', cursive;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-shadow: 0 0 10px #00ff00;
+    box-shadow: 0 0 15px rgba(0, 255, 255, 0.3);
+}
+
+.boton-opcion:hover {
+    border-color: #ffff00;
+    color: #ffff00;
+    text-shadow: 0 0 15px #ffff00;
+    box-shadow: 0 0 25px rgba(255, 255, 0, 0.7);
+    transform: scale(1.05);
+}
+
+.boton-opcion.activo {
+    border-color: #00ff00;
+    background: linear-gradient(145deg, #00ff00, #00cc00);
+    color: #000;
+    text-shadow: none;
+    box-shadow: 0 0 30px rgba(0, 255, 0, 0.8);
+}
+
+/* alternar colores */
+.alternador-color {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    margin-bottom: 15px;
+}
+
+.boton-alternador{
+    padding: 12px 25px;
+    border: 3px solid #00ffff;
+    background: rgba(0, 0, 0, 0.6);
+    color: #00ffff;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 0.7em;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-shadow: 0 0 5px #00ffff;
+}
+
+.boton-alternador:hover {
+    border-color: #ffff00;
+    color: #ffff00;
+    text-shadow: 0 0 10px #ffff00;
+}
+
+.boton-alternador.activo {
+    background: linear-gradient(145deg, #00ff00, #00cc00);
+    border-color: #00ff00;
+    color: #000;
+    text-shadow: none;
+    box-shadow: 0 0 20px rgba(0, 255, 0, 0.8);
+}
+
+.nota-opcion {
+    text-align: center;
+    color: #ffff00;
+    font-size: 0.5em;
+    text-shadow: 0 0 5px #ffff00;
+    line-height: 1.6;
+}
+
+/* boton guardar */
+.seccion-guardar {
+    text-align: center;
+    margin-top: 30px;
+}
+
+.boton-guardar {
+    background: linear-gradient(145deg, #00ff00, #00cc00);
+    color: #000;
+    border: 3px solid #00ff00;
+    padding: 20px 50px;
+    font-size: 0.9em;
+    font-family: 'Press Start 2P', cursive;
+    border-radius: 15px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 30px rgba(0, 255, 0, 0.6);
+    letter-spacing: 2px;
+}
+
+.boton-guardar:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 50px rgba(0, 255, 0, 0.9);
+}
+
+/* responsive */
+@media (max-width: 768px) {
+    .botones-opcion {
+        flex-direction: column;
+    }
+    
+    .grupo-opcion {
+        padding: 20px;
+    }
+}
